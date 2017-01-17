@@ -9,6 +9,10 @@
   "keywords": [
     "robotics"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git https://github.com/zoroloco/raspy"
+  },
   "author": "kenneth centurion",
   "license": "MIT"
 }
