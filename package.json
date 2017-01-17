@@ -1,0 +1,14 @@
+{
+  "name": "raspy",
+  "version": "1.0.0",
+  "description": "johnny5 mini robot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node raspy.js"
+  },
+  "keywords": [
+    "robotics"
+  ],
+  "author": "kenneth centurion",
+  "license": "MIT"
+}
