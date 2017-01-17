@@ -14,5 +14,8 @@
     "url": "git https://github.com/zoroloco/raspy"
   },
   "author": "kenneth centurion",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
