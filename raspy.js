@@ -1,15 +1,25 @@
-var five  = require("johnny-five"),
-    board = new five.Board();
+var five    = require("johnny-five"),
+    _       = require('underscore');
 
-board.on("ready", function() {
-  var servo1 = five.Servo(9);
-  var servo2 = five.Servo(10);
+var servo1,servo2;
 
-  servo1.sweep({
-     interval: 5000,
-  });
+var self = module.exports = {
+  init: function init(cb){
+    var board = new five.Board();
 
-  servo2.sweep({
-     interval: 5000,
-  });
-});
+    board.on("ready", function() {
+      servo1 = five.Servo(9);
+      servo2 = five.Servo(10);
+      cb();
+    });
+  },
+
+  moveServo1: function moveServo1(pos){
+    servo1.to(pos,2000);
+  },
+
+  moveServo2: function moveServo2(pos){
+    servo2.to(pos,2000);
+  }
+
+};

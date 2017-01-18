@@ -4,7 +4,7 @@
   "description": "johnny5 mini robot",
   "main": "index.js",
   "scripts": {
-    "start": "node raspy.js"
+    "start": "node index.js"
   },
   "keywords": [
     "robotics"
@@ -16,6 +16,11 @@
   "author": "kenneth centurion",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.14.0"
+    "express"    : "^4.14.0",
+    "async"      : "^1.5.0",
+    "winston"    : "^2.1.1",
+    "underscore" : "^1.8.3",
+    "body-parser": "^1.15.0",
+    "method-override": "^2.3.5"
   }
 }

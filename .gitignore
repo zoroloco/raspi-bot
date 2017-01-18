@@ -1,2 +1,4 @@
-
+*.log
 node_modules
+security/ssl/druidia.crt
+security/ssl/druidia.pem
