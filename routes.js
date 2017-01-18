@@ -18,10 +18,12 @@ module.exports = function(app) {
 
   app.get('/servo1/:pos', function(req, res) {
     res.send('pos ' + req.params.pos);
+    raspy.moveServo1(req.params.pos);
   });
 
   app.get('/servo2/:pos',function(req,res,next){
     res.send('pos ' + req.params.pos);
+    raspy.moveServo2(req.params.pos);
   });
 
   //everything else is a 404, not found.
