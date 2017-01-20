@@ -39,28 +39,28 @@ var self = module.exports = {
   right: function right(){
     var x = servo2.position;
     x = x+precision;
-    log.info("Moving raspy left to "+x);
+    log.info("Moving raspy right to "+x);
     servo2.to(x,interval);
   },
 
   left: function left(){
     var x = servo2.position;
     x = x - precision;
-    log.info("Moving raspy right to "+x);
+    log.info("Moving raspy left to "+x);
     servo2.to(x,interval);
-  },
-
-  up: function up(){
-    var x = servo1.position;
-    x = x + precision;
-    log.info("Moving raspy up to "+x);
-    servo1.to(x,interval);
   },
 
   down: function down(){
     var x = servo1.position;
-    x = x - precision;
+    x = x + precision;
     log.info("Moving raspy down to "+x);
+    servo1.to(x,interval);
+  },
+
+  up: function up(){
+    var x = servo1.position;
+    x = x - precision;
+    log.info("Moving raspy up to "+x);
     servo1.to(x,interval);
   }
 
