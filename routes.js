@@ -16,14 +16,20 @@ module.exports = function(app) {
     res.sendStatus(404);
   })
 
-  app.get('/servo1/:pos', function(req, res) {
-    res.send('pos ' + req.params.pos);
-    raspy.moveServo1(req.params.pos);
+  app.get('/left', function(req, res) {
+    raspy.left();
   });
 
-  app.get('/servo2/:pos',function(req,res,next){
-    res.send('pos ' + req.params.pos);
-    raspy.moveServo2(req.params.pos);
+  app.get('/right',function(req,res,next){
+    raspy.right();
+  });
+
+  app.get('/up',function(req,res,next){
+    raspy.up();
+  });
+
+  app.get('/down',function(req,res,next){
+    raspy.down();
   });
 
   //everything else is a 404, not found.
