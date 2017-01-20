@@ -36,12 +36,12 @@ var self = module.exports = {
     servo2.center();
   },
 
-  left: function left(){
+  right: function right(){
     log.info("Moving raspy left to "+servo2.position+precision);
     servo2.to(servo2.position+precision,interval);
   },
 
-  right: function right(){
+  left: function left(){
     log.info("Moving raspy right to "+servo2.position-precision);
     servo2.to(servo2.position-precision,interval);
   },
@@ -53,7 +53,7 @@ var self = module.exports = {
 
   down: function down(){
     log.info("Moving raspy down to "+servo1.position-precision);
-    servo2.to(servo1.position-precision,interval);
+    servo1.to(servo1.position-precision,interval);
   }
 
 };
