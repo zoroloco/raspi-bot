@@ -1,6 +1,7 @@
-var five    = require("johnny-five"),
-    log     = require(pathUtil.join(__dirname,'./logger.js')),
-    _       = require('underscore');
+var pathUtil = require('path'),
+    five     = require("johnny-five"),
+    log      = require(pathUtil.join(__dirname,'./logger.js')),
+    _        = require('underscore');
 
 var servo1,servo2,s1pos,s2pos;
 var precision = 10;
