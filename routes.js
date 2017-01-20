@@ -16,20 +16,29 @@ module.exports = function(app) {
     res.sendStatus(404);
   })
 
+  app.get('/center', function(req, res) {
+    raspy.center();
+    res.sendStatus(200);
+  });
+
   app.get('/left', function(req, res) {
     raspy.left();
+    res.sendStatus(200);
   });
 
   app.get('/right',function(req,res,next){
     raspy.right();
+    res.sendStatus(200);
   });
 
   app.get('/up',function(req,res,next){
     raspy.up();
+    res.sendStatus(200);
   });
 
   app.get('/down',function(req,res,next){
     raspy.down();
+    res.sendStatus(200);
   });
 
   //everything else is a 404, not found.

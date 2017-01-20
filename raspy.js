@@ -32,21 +32,34 @@ var self = module.exports = {
     });
   },
 
+  center: function center(){
+    log.info("Moving raspy center.");
+    servo1.center();
+    servo2.center();
+  },
+
   left: function left(){
-    log.info("Moving raspy left."+servo2.position);
-    servo2.to(servo2.position+precision,2000);
+    servo2.position+=precision;
+    log.info("Moving raspy left to "+servo2.position);
+    servo2.to(servo2.position,2000);
   },
 
   right: function right(){
-    servo2.to(pos,2000);
+    servo2.position-=precision;
+    log.info("Moving raspy right to "+servo2.position);
+    servo2.to(servo2.position,2000);
   },
 
   up: function up(){
-    servo1.to(pos,2000);
+    servo1.position+=precision;
+    log.info("Moving raspy up to "+servo1.position);
+    servo1.to(servo1.position,2000);
   },
 
   down: function down(){
-    servo2.to(pos,2000);
+    servo1.position-=precision;
+    log.info("Moving raspy down to "+servo1.position);
+    servo2.to(servo1.position,2000);
   }
 
 };
