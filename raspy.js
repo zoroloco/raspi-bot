@@ -37,23 +37,31 @@ var self = module.exports = {
   },
 
   right: function right(){
-    log.info("Moving raspy left to "+servo2.position+precision);
-    servo2.to(servo2.position+precision,interval);
+    var x = servo2.position;
+    x = x+precision;
+    log.info("Moving raspy left to "+x);
+    servo2.to(x,interval);
   },
 
   left: function left(){
-    log.info("Moving raspy right to "+servo2.position-precision);
-    servo2.to(servo2.position-precision,interval);
+    var x = servo2.position;
+    x = x - precision;
+    log.info("Moving raspy right to "+x);
+    servo2.to(x,interval);
   },
 
   up: function up(){
-    log.info("Moving raspy up to "+servo1.position+precision);
-    servo1.to(servo1.position+precision,interval);
+    var x = servo1.position;
+    x = x + precision;
+    log.info("Moving raspy up to "+x);
+    servo1.to(x,interval);
   },
 
   down: function down(){
-    log.info("Moving raspy down to "+servo1.position-precision);
-    servo1.to(servo1.position-precision,interval);
+    var x = servo1.position;
+    x = x - precision;
+    log.info("Moving raspy down to "+x);
+    servo1.to(x,interval);
   }
 
 };
