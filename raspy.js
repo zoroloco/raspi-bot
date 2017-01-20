@@ -3,8 +3,9 @@ var pathUtil = require('path'),
     log      = require(pathUtil.join(__dirname,'./logger.js')),
     _        = require('underscore');
 
-var servo1,servo2,s1pos,s2pos;
+var servo1,servo2;
 var precision = 10;
+var interval  = 2000;
 
 var self = module.exports = {
 
@@ -24,9 +25,6 @@ var self = module.exports = {
         range: [0,180]
       });
 
-      s1pos = 90;
-      s2pos = 90;
-
       log.info("Servos have been initialized.");
       cb();
     });
@@ -39,27 +37,23 @@ var self = module.exports = {
   },
 
   left: function left(){
-    servo2.position+=precision;
-    log.info("Moving raspy left to "+servo2.position);
-    servo2.to(servo2.position,2000);
+    log.info("Moving raspy left to "+servo2.position+precision);
+    servo2.to(servo2.position+precision,interval);
   },
 
   right: function right(){
-    servo2.position-=precision;
-    log.info("Moving raspy right to "+servo2.position);
-    servo2.to(servo2.position,2000);
+    log.info("Moving raspy right to "+servo2.position-precision);
+    servo2.to(servo2.position-precision,interval);
   },
 
   up: function up(){
-    servo1.position+=precision;
-    log.info("Moving raspy up to "+servo1.position);
-    servo1.to(servo1.position,2000);
+    log.info("Moving raspy up to "+servo1.position+precision);
+    servo1.to(servo1.position-precision,interval);
   },
 
   down: function down(){
-    servo1.position-=precision;
-    log.info("Moving raspy down to "+servo1.position);
-    servo2.to(servo1.position,2000);
+    log.info("Moving raspy down to "+servo1.position-precision);
+    servo2.to(servo1.position-precision,interval);
   }
 
 };
