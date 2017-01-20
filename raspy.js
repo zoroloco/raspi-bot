@@ -48,7 +48,7 @@ var self = module.exports = {
 
   up: function up(){
     log.info("Moving raspy up to "+servo1.position+precision);
-    servo1.to(servo1.position-precision,interval);
+    servo1.to(servo1.position+precision,interval);
   },
 
   down: function down(){
