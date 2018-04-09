@@ -4,7 +4,6 @@ var pathUtil = require('path'),
     log      = require(pathUtil.join(__dirname,'./logger.js')),
     raspy    = require(pathUtil.join(__dirname,'./raspy.js')),
     conf     = require(pathUtil.join(__dirname,'./conf.json')),
-    https    = require('https'),
     http     = require('http');
 
 log.init();
@@ -26,45 +25,35 @@ catch(e){
 process.title = conf.title;
 var app       = express();//start the server.
 
+raspy.init();
+
+function shutdown(){
+    httpServer.close();
+    process.exit();
+}
+
 //define process handlers
 process.on('SIGTERM', function() {
-  log.info("Got kill signal. Exiting.");
-  httpServer.close();
-  httpsServer.close();
-  process.exit();
+    log.info("Got kill signal. Exiting.");
+    shutdown();
 });
 
 process.on('SIGINT', function() {
-  log.warn("Caught interrupt signal(Ctrl-C)");
-  httpServer.close();
-  httpsServer.close();
-  process.exit();
+    log.warn("Caught interrupt signal(Ctrl-C)");
+   shutdown();
 });
 
 process.on('exit', function(){
-  log.info("server process exiting...");
-})
+    log.info("server process exiting...");
+});
 
 process.on('uncaughtException', function (err) {
-  var msg="Uncaught Exception ";
-  if( err.name === 'AssertionError' ) {
-    msg += err.message;
-  } else {
-    msg += err;
-  }
-
-  log.error(msg);
+    log.error(err);
 });
 
-raspy.init(function(){
-  var httpsServer = https.createServer(app.get('httpsOptions'),app).listen(app.get('port'),
+//non secure site used to reroute to secure site.
+var httpServer = http.createServer(app).listen(app.get('port'),
     function(){
-      log.info(process.title+" server now listening on port:"+httpsServer.address().port);
-  });
-
-  //non secure site used to reroute to secure site.
-  var httpServer = http.createServer(app).listen(app.get('httpPort'),
-    function(){
-      log.info(process.title+" server now listening on port:"+httpServer.address().port);
-  });
+    log.info(process.title+" server now listening on port:"+httpServer.address().port);
 });
+

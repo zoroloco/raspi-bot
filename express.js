@@ -5,10 +5,9 @@ var   pathUtil = require('path'),
       fs       = require('fs'),
       conf     = require(pathUtil.join(__dirname,'./conf.json')),
       log      = require(pathUtil.join(__dirname,'./logger.js')),
-bodyParser     = require('body-parser'),
-methodOverride = require('method-override');
+bodyParser     = require('body-parser');
 
-module.exports = function() {
+module.exports = function(raspibot) {
     var app       = express();
 
     log.info("Setting default and config values for express app.");
@@ -16,13 +15,6 @@ module.exports = function() {
     app.set('port', process.env.PORT || conf.port);
     app.set('httpPort', conf.httpPort);
     app.set('title', conf.title);
-
-    //CONFIGURE SSL
-    app.set('httpsOptions',
-    {
-        key:  fs.readFileSync(pathUtil.join(__dirname, "./security/ssl/druidia.pem")),
-        cert: fs.readFileSync(pathUtil.join(__dirname, "./security/ssl/druidia.crt"))
-    });
 
     // get all data/stuff of the body (POST) parameters
     // parse application/json
@@ -34,15 +26,7 @@ module.exports = function() {
     // parse application/x-www-form-urlencoded
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-    app.use(methodOverride('X-HTTP-Method-Override'));
-
-    //setup the static dir to be served
-    //log.info("Setting static file directory.");
-    //app.use(express.static(pathUtil.join(__dirname,'../../client/www')));
-
-    log.info("Defining routing file.");
-    require('./routes.js')(app);
+    require('./routes.js')(app,raspibot);
 
     return app;
 };

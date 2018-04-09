@@ -1,26 +1,29 @@
 {
-  "name": "raspy",
+  "name": "raspi-bot",
   "version": "1.0.0",
-  "description": "johnny5 mini robot",
+  "description": "Raspberry Pi Zero controlling a Pololu 12 servo controller via USB.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [
-    "robotics"
+    "robotics",
+    "maestro",
+    "pololu",
+    "nodejs"
   ],
   "repository": {
     "type": "git",
-    "url": "git https://github.com/zoroloco/raspy"
+    "url": "git https://github.com/zoroloco/raspi-bot.git"
   },
   "author": "kenneth centurion",
   "license": "MIT",
   "dependencies": {
-    "express"    : "^4.14.0",
-    "async"      : "^1.5.0",
-    "winston"    : "^2.1.1",
-    "underscore" : "^1.8.3",
-    "body-parser": "^1.15.0",
-    "method-override": "^2.3.5"
+    "express": "^4.16.3",
+    "async": "^2.6.0",
+    "winston": "^2.4.1",
+    "underscore": "^1.8.3",
+    "body-parser": "^1.18.2",
+    "method-override": "^2.3.10"
   }
 }

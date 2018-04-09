@@ -1,8 +1,7 @@
-{ "title" : "raspy",
-  "hostname" : "raspy",
+{ "title" : "raspi-bot",
+  "hostname" : "localhost",
 
-  "port"     : 443,
-  "httpPort" : 80,
+  "port"     : 7482,
 
   "logger" : {
     "enabled" : true,
