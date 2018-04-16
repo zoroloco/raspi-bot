@@ -24,6 +24,7 @@
     "winston": "^2.4.1",
     "underscore": "^1.8.3",
     "body-parser": "^1.18.2",
-    "method-override": "^2.3.10"
+    "method-override": "^2.3.10",
+    "swagger-ui-express": "latest"
   }
 }

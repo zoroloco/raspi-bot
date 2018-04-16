@@ -1,11 +1,12 @@
 //This is my express wrapper object where all the config for the server takes place.
 
-const express  = require('express');
-var   pathUtil = require('path'),
-      fs       = require('fs'),
-      conf     = require(pathUtil.join(__dirname,'./conf.json')),
-      log      = require(pathUtil.join(__dirname,'./logger.js')),
-bodyParser     = require('body-parser');
+const express          = require('express');
+var   pathUtil         = require('path'),
+      conf             = require(pathUtil.join(__dirname,'./conf.json')),
+      log              = require(pathUtil.join(__dirname,'./logger.js')),
+      swaggerUi        = require('swagger-ui-express'),
+      swaggerDocument  = require('./swagger.json');
+      bodyParser       = require('body-parser');
 
 module.exports = function(raspibot) {
     var app       = express();
@@ -25,6 +26,9 @@ module.exports = function(raspibot) {
 
     // parse application/x-www-form-urlencoded
     app.use(bodyParser.urlencoded({ extended: true }));
+
+    //setup swagger
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     require('./routes.js')(app,raspibot);
 

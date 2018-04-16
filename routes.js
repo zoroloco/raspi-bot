@@ -26,35 +26,13 @@ module.exports = function(app) {
       // reRouteHttps
   );//after logging, forward to https site.
 
-  app.get('/',function(req,res,next){
-    res.sendStatus(404);
-  });
-
   app.get('/center', function(req, res) {
-      raspy.processCommand("0,600");
       res.sendStatus(200);
   });
 
-  app.get('/left', function(req, res) {
-      raspy.processCommand("0,1200");
+  app.post('/move', function(req, res) {
+      raspy.processCommand(req.body.servo,req.body.pos);
       res.sendStatus(200);
-  });
-
-  app.get('/right',function(req,res,next){
-      res.sendStatus(200);
-  });
-
-  app.get('/up',function(req,res,next){
-      res.sendStatus(200);
-  });
-
-  app.get('/down',function(req,res,next){
-      res.sendStatus(200);
-  });
-
-  //everything else is a 404, not found.
-  app.get('*',function(req,res,next){
-      res.sendStatus(404);
   });
 
   //error middleware triggered by next('some error');
