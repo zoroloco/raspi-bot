@@ -19,19 +19,23 @@ function reRouteHttps(req,res,next){
     }
 }
 
-module.exports = function(app) {
+module.exports = function(app,raspybot) {
 
   //EVERYTHING WILL BE AUDITED AND REROUTED TO SECURE SITE.
-  app.use(auditRequest,//if not mobile site, then log it.
-      // reRouteHttps
-  );//after logging, forward to https site.
+  app.use(auditRequest);//after logging, forward to https site.
 
   app.get('/center', function(req, res) {
       res.sendStatus(200);
   });
 
   app.post('/move', function(req, res) {
-      raspy.processCommand(req.body.servo,req.body.pos);
+      req.setEncoding('utf8');
+      console.info("POST:/move - "+JSON.stringify(req.body));
+      let cmd = {
+          "servo": req.body.servo,
+          "pos" : req.body.pos
+      };
+      raspybot.sendCommand(cmd);
       res.sendStatus(200);
   });
 

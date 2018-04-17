@@ -8,7 +8,7 @@ var   pathUtil         = require('path'),
       swaggerDocument  = require('./swagger.json');
       bodyParser       = require('body-parser');
 
-module.exports = function() {
+module.exports = function(raspybot) {
     var app       = express();
 
     log.info("Setting default and config values for express app.");
@@ -30,7 +30,7 @@ module.exports = function() {
     //setup swagger
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-    require('./routes.js')(app);
+    require('./routes.js')(app,raspybot);
 
     return app;
 };

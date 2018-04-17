@@ -2,7 +2,7 @@ var pathUtil = require('path'),
     _        = require('underscore'),
     express  = require(pathUtil.join(__dirname,'./express.js')),
     log      = require(pathUtil.join(__dirname,'./logger.js')),
-    raspy    = require(pathUtil.join(__dirname,'./raspy.js')),
+    Raspy    = require(pathUtil.join(__dirname,'./raspy.js')),
     conf     = require(pathUtil.join(__dirname,'./conf.json')),
     http     = require('http');
 
@@ -23,12 +23,12 @@ catch(e){
 }
 
 process.title = conf.title;
-var app       = express();//start the server.
-
-raspy.init();
+var raspybot  = new Raspy();
+var app       = express(raspybot);//start the server.
 
 function shutdown(){
     httpServer.close();
+    raspybot.shutdown();
     process.exit();
 }
 
@@ -44,7 +44,7 @@ process.on('SIGINT', function() {
 });
 
 process.on('exit', function(){
-    log.info("server process exiting...");
+    log.info("server process exiting...");//bye bye bye
 });
 
 process.on('uncaughtException', function (err) {
@@ -55,5 +55,6 @@ process.on('uncaughtException', function (err) {
 var httpServer = http.createServer(app).listen(app.get('port'),
     function(){
     log.info(process.title+" server now listening on port:"+httpServer.address().port);
+    raspybot.connect();
 });
 

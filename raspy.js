@@ -3,40 +3,51 @@ var pathUtil = require('path'),
     cp       = require('child_process'),
     _        = require('underscore');
 
-var maestro = null;
-var cmd     = pathUtil.join(__dirname,"raspibot.py");
+function Raspy(){
+    var self      = this;
+    this._cmd     = pathUtil.join(__dirname,"raspibot.py");
+    this._maestro = null;
 
-var processCommand = function(cmd) {
-    log.info("Raspy got command:" + JSON.stringify(cmd));
-    if (!_.isEmpty(maestro)) {
-        log.warn('Sending command down to stdin of maestro.');
-        maestro.stdin.write(cmd);//just send down raw
+    Raspy.prototype.shutdown = function(){
+        var self = this;
+        if(!_.isEmpty(self._maestro)){
+            process.kill(self._maestro.pid);//clean-up python serial connection
+        }
+    };
+
+    Raspy.prototype.connect = function() {
+        var self = this;
+        //self._maestro = cp.spawn('python', [self._cmd]);
+        self._maestro.stdin.setEncoding('utf-8');
+
+        self._maestro.stdout.on('data', (data) => {
+            log.info('raspy received stdout from maestro:'+data);
+        });
+
+        self._maestro.stderr.on('data', (err) => {
+            log.error('raspy received stderr from maestro:'+err);
+        });
+
+        self._maestro.on('close', (code) => {
+            log.info('raspy python process closed with code:'+code);
+        });
+
+        self._maestro.on('exit', (code) => {
+            log.info('raspy python process exited with code:'+code);
+        });
+    };
+
+    Raspy.prototype.sendCommand = function(cmd){
+        var self = this;
+        log.info("Raspy got command:" + JSON.stringify(cmd));
+        if (!_.isEmpty(self._maestro)) {
+            log.warn('Sending command down to stdin of maestro.');
+            self._maestro.stdin.write(cmd.servo+","+cmd.pos);//just send down raw
+        }
+        else {
+            log.error("Raspy error. Maestro object null.");
+        }
     }
-    else {
-        log.error("raspy client cannot send command:" + cmd);
-    }
-};
+}//Raspy
 
-var init = function() {
-    maestro = cp.spawn('python '+cmd);
-    maestro.stdin.setEncoding('utf-8');
-
-    maestro.stdout.on('data', (data) => {
-        log.info('raspy received from maestro:'+data);
-    });
-
-    maestro.stderr.on('data', (err) => {
-        log.error('raspy received stderr from maestro:'+err);
-    });
-
-    maestro.on('close', (code) => {
-        log.info('raspy process closed with code:'+code);
-    });
-
-    maestro.on('exit', (code) => {
-        log.info('raspy process exited with code:'+code);
-    });
-};
-
-module.exports.init = init;
-module.exports.processCommand = processCommand;
+module.exports = Raspy;
