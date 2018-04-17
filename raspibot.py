@@ -11,7 +11,7 @@ while True:
     cmd = stdin.readline()
     if(cmd is not None):
         splitStr = cmd.split(',')
-        servo.setTarget(int(splitStr[0]),int(splitStr[1]))  #set servo to move to position
+        servo.setTarget(int(splitStr[0]),int(splitStr[1]))
         sys.stdout.write("Moving servo:"+splitStr[0]+" to position:"+splitStr[1])
         sys.stdout.flush()
 

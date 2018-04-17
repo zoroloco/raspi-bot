@@ -43,8 +43,7 @@ function Raspy(){
         log.info("Raspy got command:" + JSON.stringify(cmd));
         if (!_.isEmpty(self._maestro)) {
             log.warn('Sending command down to stdin of maestro.');
-            self._maestro.stdin.write(cmd.servo+","+cmd.pos);//just send down raw
-            self._maestro.stdin.pause();
+            self._maestro.stdin.write(cmd.servo+","+cmd.pos+'\r\n');//just send down raw
         }
         else {
             log.error("Raspy error. Maestro object null.");
