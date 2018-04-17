@@ -17,8 +17,9 @@ function Raspy(){
 
     Raspy.prototype.connect = function() {
         var self = this;
-        //self._maestro = cp.spawn('python', [self._cmd]);
+        self._maestro = cp.spawn('python', [self._cmd]);
         self._maestro.stdin.setEncoding('utf-8');
+        self._maestro.stdin.end();
 
         self._maestro.stdout.on('data', (data) => {
             log.info('raspy received stdout from maestro:'+data);
@@ -43,6 +44,7 @@ function Raspy(){
         if (!_.isEmpty(self._maestro)) {
             log.warn('Sending command down to stdin of maestro.');
             self._maestro.stdin.write(cmd.servo+","+cmd.pos);//just send down raw
+            self._maestro.stdin.end();
         }
         else {
             log.error("Raspy error. Maestro object null.");
