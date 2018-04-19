@@ -1,0 +1,19 @@
+#!/bin/sh
+#/etc/init.d/raspibotService
+export PATH=$PATH:/usr/local/bin
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
+
+case "$1" in
+start)
+exec forever /usr/local/src/raspi-bot/index.js
+;;
+stop)
+exec forever stop /usr/local/src/raspi-bot/index.js
+;;
+*)
+echo "Usage: /etc/init.d/raspibotService {start|stop}"
+exit 1
+;;
+esac
+exit 0
+

@@ -7,8 +7,11 @@
 - Maestro 12 servo USB controller (Pololu)
 - 5 volt 10amp power supply
 
+npm install
+npm install -g forever
+
 #To run:
-systemctl start|restart|stop raspy.service
+/etc/init.d/raspibotService start
 
 Credit to:
 # Steven Jacobs
