@@ -31,9 +31,9 @@ function Raspy(){
 
         self._maestro.stdout.on('data', (data) => {
             log.info('raspy received stdout from maestro:'+data.toString());
-            if(_.isEqual(data,'CONNECTED')){
+            if(_.isEqual(data.toString(),'CONNECTED')){
                 log.info("Successfully started raspibot.py script.");
-                self.wakeUp();
+                //self.wakeUp();
             }
         });
 
@@ -53,14 +53,14 @@ function Raspy(){
     Raspy.prototype.wakeUp = function(){
         var self = this;
 
-        self.sendCommand(HEAD_TILT,9000);//get head out of arm's way
-        self.sendCommand(BASE,5833);
-        self.sendCommand(SHOULDER,3000);
-        self.sendCommand(ELBOW,9000);
-        self.sendCommand(WRIST,9000);
-        self.sendCommand(HAND,9000);//hand open
-        self.sendCommand(HEAD_PAN,5500);//center head
-        self.sendCommand(HEAD_TILT,6000);//put head up
+        self.sendCommand({"servo":HEAD_TILT,"pos":9000});//get head out of arm's way
+        self.sendCommand({"servo":BASE,"pos":5833});
+        self.sendCommand({"servo":SHOULDER,"pos":3000});
+        self.sendCommand({"servo":ELBOW,"pos":9000});
+        self.sendCommand({"servo":WRIST,"pos":9000});
+        self.sendCommand({"servo":HAND,"pos":9000});//hand open
+        self.sendCommand({"servo":HEAD_PAN,"pos":5500});//center head
+        self.sendCommand({"servo":HEAD_TILT,"pos":6000});//put head up
     };
 
     Raspy.prototype.sendCommand = function(cmd){

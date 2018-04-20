@@ -22,7 +22,7 @@ module.exports = function(app,raspybot) {
   app.post('/move', function(req, res) {
       req.setEncoding('utf8');
       console.info("POST:/move - "+JSON.stringify(req.body));
-      console.info("here is req.servo?"+req.servo);
+
       let cmd = {
           "servo": req.body.servo,
           "pos" : req.body.pos

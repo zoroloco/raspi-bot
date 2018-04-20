@@ -12,6 +12,8 @@ servo.setAccel(6,4)
 servo.setAccel(7,4)
 
 sys.stdout.write('CONNECTED')
+sys.stdout.flush()
+
 while True:
     cmd = stdin.readline()
     if(cmd is not None):
