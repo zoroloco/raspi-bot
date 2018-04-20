@@ -5,8 +5,13 @@ from sys import stdin
 servo = maestro.Controller()
 servo.setAccel(0,4)      #set servo 0 acceleration to 4
 servo.setAccel(1,4)
+servo.setAccel(3,4)
+servo.setAccel(4,4)
+servo.setAccel(5,4)
+servo.setAccel(6,4)
+servo.setAccel(7,4)
 
-sys.stdout.write('starting raspibot.py')
+sys.stdout.write('CONNECTED')
 while True:
     cmd = stdin.readline()
     if(cmd is not None):

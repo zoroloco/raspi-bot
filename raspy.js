@@ -3,6 +3,15 @@ var pathUtil = require('path'),
     cp       = require('child_process'),
     _        = require('underscore');
 
+
+ELBOW = 0;
+HEAD_PAN = 1;
+HEAD_TILT = 3;
+SHOULDER = 4;
+BASE = 5;
+HAND = 6;
+WRIST = 7;
+
 function Raspy(){
     var self      = this;
     this._cmd     = pathUtil.join(__dirname,"raspibot.py");
@@ -19,10 +28,13 @@ function Raspy(){
         var self = this;
         self._maestro = cp.spawn('python', [self._cmd]);
         self._maestro.stdin.setEncoding('utf-8');
-        //self._maestro.stdin.end();
 
         self._maestro.stdout.on('data', (data) => {
             log.info('raspy received stdout from maestro:'+data.toString());
+            if(_.isEqual(data,'CONNECTED')){
+                log.info("Successfully started raspibot.py script.");
+                self.wakeUp();
+            }
         });
 
         self._maestro.stderr.on('data', (err) => {
@@ -36,6 +48,19 @@ function Raspy(){
         self._maestro.on('exit', (code) => {
             log.info('raspy python process exited with code:'+code);
         });
+    };
+
+    Raspy.prototype.wakeUp = function(){
+        var self = this;
+
+        self.sendCommand(HEAD_TILT,9000);//get head out of arm's way
+        self.sendCommand(BASE,5833);
+        self.sendCommand(SHOULDER,3000);
+        self.sendCommand(ELBOW,9000);
+        self.sendCommand(WRIST,9000);
+        self.sendCommand(HAND,9000);//hand open
+        self.sendCommand(HEAD_PAN,5500);//center head
+        self.sendCommand(HEAD_TILT,6000);//put head up
     };
 
     Raspy.prototype.sendCommand = function(cmd){
