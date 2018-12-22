@@ -1,6 +1,7 @@
 import maestro
 import sys
 from sys import stdin
+from gpiozero import LED
 
 servo = maestro.Controller()
 servo.setAccel(0,4)      #set servo 0 acceleration to 4
@@ -10,6 +11,16 @@ servo.setAccel(4,4)
 servo.setAccel(5,4)
 servo.setAccel(6,4)
 servo.setAccel(7,4)
+
+yellowLed = LED(21)
+greenLed = LED(16)
+blueLed = LED(20)
+redLed = LED(18)
+
+redLed.on()
+blueLed.on()
+greenLed.on()
+yellowLed.on()
 
 sys.stdout.write('CONNECTED')
 sys.stdout.flush()
