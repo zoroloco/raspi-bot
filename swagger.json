@@ -9,6 +9,14 @@
   "host": "localhost:7482",
   "basePath": "/",
   "paths": {
+    "/connect": {
+      "get":{
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "swagTest",
+        "tags": ["/get"],
+        "description": "Sends a remote connect message that turns the blue LED indicator on."
+      }
+    },
     "/move": {
       "post": {
         "x-swagger-router-controller": "middleware-name1",
