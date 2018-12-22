@@ -1,23 +1,34 @@
 //This script defines the routes taken by the server.
 
-var pathUtil           = require('path'),
-    log                = require(pathUtil.join(__dirname,'./logger.js'));
+var pathUtil  = require('path'),
+    log       = require(pathUtil.join(__dirname,'./logger.js'));
 
 function auditRequest(req,res,next){
     log.info(req.method+" request to:"+req.originalUrl+" made by IP Address: "+req.ip);
     next();
 }
-
 function cors(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-};
+}
 
 module.exports = function(app,raspybot) {
 
   //EVERYTHING WILL BE AUDITED AND REROUTED TO SECURE SITE.
   app.use(auditRequest,cors);//after logging, forward to https site.
+
+  //All this call does is tell the power LED to turn on.
+  app.get('/connect', function(req, res){
+     console.info("POST:/connect.");
+
+     let cmd = {
+       "connect": true
+     };
+
+     raspybot.remoteConnect(cmd);
+     res.json({});
+  });
 
   app.post('/move', function(req, res) {
       req.setEncoding('utf8');
@@ -27,7 +38,7 @@ module.exports = function(app,raspybot) {
           "servo": req.body.servo,
           "pos" : req.body.pos
       };
-      raspybot.sendCommand(cmd);
+      raspybot.sendServoCommand(cmd);
       res.json({});
   });
 

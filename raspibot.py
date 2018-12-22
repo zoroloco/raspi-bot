@@ -17,17 +17,15 @@ greenLed = LED(16)
 blueLed = LED(20)
 redLed = LED(18)
 
-redLed.on()
-blueLed.on()
-greenLed.on()
-yellowLed.on()
-
 sys.stdout.write('CONNECTED')
 sys.stdout.flush()
 
 while True:
     cmd = stdin.readline()
     if(cmd is not None):
+        if(cmd is 'REMOTE_CONNECT'):
+            blueLed.on()
+        
         splitStr = cmd.split(',')
         servo.setTarget(int(splitStr[0]),int(splitStr[1]))
         sys.stdout.write("Moving servo:"+splitStr[0]+" to position:"+splitStr[1])
