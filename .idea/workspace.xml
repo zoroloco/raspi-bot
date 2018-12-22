@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0df5b868-a8f2-432c-85ef-808a6f7c87e0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/raspibot.py" beforeDir="false" afterPath="$PROJECT_DIR$/raspibot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raspy.js" beforeDir="false" afterPath="$PROJECT_DIR$/raspy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -41,8 +38,8 @@
       <file leaf-file-name="raspibot.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/raspibot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+            <state relative-caret-position="514">
+              <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -70,7 +67,6 @@
         <option value="$PROJECT_DIR$/security.server.controller.js" />
         <option value="$PROJECT_DIR$/maestro.py" />
         <option value="$PROJECT_DIR$/command.json" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/swagger.json" />
         <option value="$PROJECT_DIR$/index.js" />
@@ -78,6 +74,7 @@
         <option value="$PROJECT_DIR$/routes.js" />
         <option value="$PROJECT_DIR$/conf.json" />
         <option value="$PROJECT_DIR$/raspy.js" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/raspibot.py" />
       </list>
     </option>
@@ -109,6 +106,17 @@
             <path>
               <item name="raspi-bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="raspi-bot" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="raspi-bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspi-bot" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="raspi-bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="raspi-bot" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="shell" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -194,12 +202,12 @@
       <workItem from="1529728798492" duration="423000" />
       <workItem from="1529794096134" duration="205000" />
       <workItem from="1530116091979" duration="62000" />
-      <workItem from="1545434259169" duration="2968000" />
+      <workItem from="1545434259169" duration="3167000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44047000" />
+    <option name="totallyTimeSpent" value="44246000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -238,13 +246,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/raspy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1219">
@@ -512,13 +513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/swagger.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -580,10 +574,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/shell/raspy-clean-build.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/raspibot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+        <state relative-caret-position="514">
+          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
         </state>
       </provider>
     </entry>

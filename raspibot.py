@@ -25,10 +25,11 @@ while True:
     if(cmd is not None):
         if(cmd is 'REMOTE_CONNECT'):
             blueLed.on()
-        
-        splitStr = cmd.split(',')
-        servo.setTarget(int(splitStr[0]),int(splitStr[1]))
-        sys.stdout.write("Moving servo:"+splitStr[0]+" to position:"+splitStr[1])
-        sys.stdout.flush()
+            sys.stdout.flush()
+        else:
+            splitStr = cmd.split(',')
+            servo.setTarget(int(splitStr[0]),int(splitStr[1]))
+            sys.stdout.write("Moving servo:"+splitStr[0]+" to position:"+splitStr[1])
+            sys.stdout.flush()
 
 servo.close

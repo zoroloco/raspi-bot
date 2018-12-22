@@ -1,3 +1,6 @@
+#Info
+This is the raspi-bot code that resides on the actual robot.
+
 #Requirements:
 
 - Raspberry Pi Zero v1.3 (camera version)
