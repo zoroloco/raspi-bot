@@ -64,9 +64,9 @@ function Raspy(){
     };
     */
 
-    Raspy.prototype.remoteConnect = function(cmd){
+    Raspy.prototype.remoteConnect = function(){
       var self = this;
-      log.info("Raspy got command:" + JSON.stringify(cmd));
+      log.info("Raspy got connect command:");
       if (!_.isEmpty(self._maestro)) {
         log.warn('Sending remote connect command down to stdin of maestro.');
         self._maestro.stdin.write('REMOTE_CONNECT'+'\r\n');//just send down raw

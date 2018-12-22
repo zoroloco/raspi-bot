@@ -20,13 +20,9 @@ module.exports = function(app,raspybot) {
 
   //All this call does is tell the power LED to turn on.
   app.get('/connect', function(req, res){
-     console.info("POST:/connect.");
+     console.info("GET:/connect.");
 
-     let cmd = {
-       "connect": true
-     };
-
-     raspybot.remoteConnect(cmd);
+     raspybot.remoteConnect();
      res.json({});
   });
 

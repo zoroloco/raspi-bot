@@ -13,7 +13,7 @@
       "get":{
         "x-swagger-router-controller": "middleware-name1",
         "operationId": "swagTest",
-        "tags": ["/get"],
+        "tags": ["/connect"],
         "description": "Sends a remote connect message that turns the blue LED indicator on."
       }
     },
