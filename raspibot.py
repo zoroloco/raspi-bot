@@ -22,11 +22,11 @@ sys.stdout.flush()
 
 while True:
     cmd = stdin.readline()
-    if(cmd is not None):
-        if(cmd is 'REMOTE_CONNECT'):
+    if cmd is not None:
+        if cmd == 'REMOTE_CONNECT':
             blueLed.on()
             sys.stdout.flush()
-        else:
+        elif:
             splitStr = cmd.split(',')
             servo.setTarget(int(splitStr[0]),int(splitStr[1]))
             sys.stdout.write("Moving servo:"+splitStr[0]+" to position:"+splitStr[1])
