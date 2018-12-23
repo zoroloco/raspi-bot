@@ -64,9 +64,21 @@ function Raspy(){
     };
     */
 
+    Raspy.prototype.remoteDisconnect = function(){
+        var self = this;
+        log.info("Raspy got disconnect command.");
+        if (!_.isEmpty(self._maestro)) {
+            log.warn('Sending remote disconnect command down to stdin of maestro.');
+            self._maestro.stdin.write('REMOTE_DISCONNECT'+'\r\n');//just send down raw
+        }
+        else {
+            log.error("Raspy error. Maestro object null.");
+        }
+    };
+
     Raspy.prototype.remoteConnect = function(){
       var self = this;
-      log.info("Raspy got connect command:");
+      log.info("Raspy got connect command.");
       if (!_.isEmpty(self._maestro)) {
         log.warn('Sending remote connect command down to stdin of maestro.');
         self._maestro.stdin.write('REMOTE_CONNECT'+'\r\n');//just send down raw

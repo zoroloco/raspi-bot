@@ -17,6 +17,14 @@
         "description": "Sends a remote connect message that turns the blue LED indicator on."
       }
     },
+    "/disconnect": {
+      "get":{
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "swagTest",
+        "tags": ["/disconnect"],
+        "description": "Sends a remote disconnect message that turns the blue LED indicator off."
+      }
+    },
     "/move": {
       "post": {
         "x-swagger-router-controller": "middleware-name1",
