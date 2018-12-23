@@ -14,6 +14,7 @@ WRIST = 7;
 function Raspy(){
     var self      = this;
     this._cmd     = pathUtil.join(__dirname,"raspibot.py");
+    this._remoteConnected = false;
     this._maestro = null;
 
     Raspy.prototype.shutdown = function(){
@@ -70,6 +71,7 @@ function Raspy(){
         if (!_.isEmpty(self._maestro)) {
             log.warn('Sending remote disconnect command down to stdin of maestro.');
             self._maestro.stdin.write('REMOTE_DISCONNECT'+'\r\n');//just send down raw
+            self._remoteConnected = false;
         }
         else {
             log.error("Raspy error. Maestro object null.");
@@ -82,6 +84,7 @@ function Raspy(){
       if (!_.isEmpty(self._maestro)) {
         log.warn('Sending remote connect command down to stdin of maestro.');
         self._maestro.stdin.write('REMOTE_CONNECT'+'\r\n');//just send down raw
+        self._remoteConnected = true;
       }
       else {
         log.error("Raspy error. Maestro object null.");
@@ -91,6 +94,12 @@ function Raspy(){
     Raspy.prototype.sendServoCommand = function(cmd){
         var self = this;
         log.info("Raspy got servo command:" + JSON.stringify(cmd));
+
+        if(self._remoteConnected === false){
+            log.error("Error sending servo command. Remote connection must send connect command first.");
+            return;
+        }
+
         if (!_.isEmpty(self._maestro)) {
             log.warn('Sending servo command down to stdin of maestro.');
             self._maestro.stdin.write(cmd.servo+","+cmd.pos+'\r\n');//just send down raw
