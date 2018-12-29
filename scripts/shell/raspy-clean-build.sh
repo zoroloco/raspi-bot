@@ -5,7 +5,7 @@
 
 clear
 
-SRC_DIR="/usr/local/src/raspy"
+SRC_DIR="/usr/local/src/raspy-bot"
 
 echo "Stopping raspy..."
 sudo systemctl stop raspy.service
@@ -13,7 +13,7 @@ sudo systemctl stop raspy.service
 echo "Gitting latest code..."
 
 sudo rm -rf $SRC_DIR
-sudo git clone https://github.com/zoroloco/raspy.git $SRC_DIR
+sudo git clone https://github.com/zoroloco/raspy-bot.git $SRC_DIR
 
 echo "Now installing dependencies..."
 cd $SRC_DIR
@@ -33,4 +33,3 @@ sudo systemctl daemon-reload
 
 echo "Now running raspy..."
 sudo systemctl start raspy.service
-#sudo $SRC_DIR/scripts/shell/druidia-run.sh

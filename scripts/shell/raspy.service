@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/src/raspy/scripts/shell/raspy-run.sh
+ExecStart=/usr/local/src/raspy-bot/scripts/shell/raspy-run.sh
 Restart=on-abort
 
 

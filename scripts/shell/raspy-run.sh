@@ -6,5 +6,5 @@
 #
 
 echo "Starting raspy robot..."
-cd /usr/local/src/raspy
+cd /usr/local/src/raspy-bot
 sudo npm start
