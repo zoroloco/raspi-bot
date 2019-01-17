@@ -19,12 +19,13 @@
   "author": "kenneth centurion",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.3",
     "async": "^2.6.0",
-    "winston": "^2.4.1",
-    "underscore": "^1.8.3",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
     "method-override": "^2.3.10",
-    "swagger-ui-express": "latest"
+    "swagger-ui-express": "latest",
+    "underscore": "^1.8.3",
+    "winston": "^2.4.1"
   }
 }

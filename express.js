@@ -5,8 +5,9 @@ var   pathUtil         = require('path'),
       conf             = require(pathUtil.join(__dirname,'./conf.json')),
       log              = require(pathUtil.join(__dirname,'./logger.js')),
       swaggerUi        = require('swagger-ui-express'),
-      swaggerDocument  = require('./swagger.json');
-      bodyParser       = require('body-parser');
+      swaggerDocument  = require('./swagger.json'),
+      bodyParser       = require('body-parser'),
+      cors             = require('cors');
 
 module.exports = function(raspybot) {
     var app       = express();
@@ -29,6 +30,8 @@ module.exports = function(raspybot) {
 
     //setup swagger
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+    app.use(cors);
 
     require('./routes.js')(app,raspybot);
 
