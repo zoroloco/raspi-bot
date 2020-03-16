@@ -18,22 +18,9 @@ module.exports = function(app,raspybot) {
   //EVERYTHING WILL BE AUDITED AND REROUTED TO SECURE SITE.
   app.use(auditRequest,cors);//after logging, forward to https site.
 
-  //All this call does is tell the blue LED to turn on.
-  app.get('/connect', function(req, res){
-     console.info("GET:/connect.");
-     raspybot.remoteConnect();
-     res.json({});
-  });
-
-  app.get('/disconnect', function(req, res){
-      console.info("GET:/disconnect.");
-      raspybot.remoteDisconnect();
-      res.json({});
-  });
-
   app.post('/move', function(req, res) {
       req.setEncoding('utf8');
-      console.info("POST:/move - "+JSON.stringify(req.body));
+      log.info("POST:/move - "+JSON.stringify(req.body));
 
       let cmd = {
           "servo": req.body.servo,

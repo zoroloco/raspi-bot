@@ -51,8 +51,6 @@ function Raspy(){
 
     Raspy.prototype.wakeUp = function(){
         var self = this;
-        self.sendServoCommand(HEAD_TILT+","+9000);//get head out of arm's way
-        self.sendServoCommand({"servo":HEAD_TILT,"pos":9000});//get head out of arm's way
         self.sendServoCommand({"servo":BASE,"pos":5833});
         self.sendServoCommand({"servo":SHOULDER,"pos":3000});
         self.sendServoCommand({"servo":ELBOW,"pos":9000});
@@ -67,7 +65,7 @@ function Raspy(){
         log.info("Raspy got servo command:" + JSON.stringify(cmd));
 
         if (!_.isEmpty(self._maestro)) {
-            log.warn('Sending servo command down to stdin of maestro.');
+            log.info('Sending servo command down to stdin of maestro.');
             self._maestro.stdin.write(cmd.servo+","+cmd.pos+'\r\n');//just send down raw
         }
         else {
