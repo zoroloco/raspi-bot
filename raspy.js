@@ -14,7 +14,6 @@ WRIST = 7;
 function Raspy(){
     var self      = this;
     this._cmd     = pathUtil.join(__dirname,"raspibot.py");
-    this._remoteConnected = false;
     this._maestro = null;
 
     Raspy.prototype.shutdown = function(){
@@ -33,7 +32,7 @@ function Raspy(){
             log.info('raspy received stdout from maestro:'+data.toString());
             if(_.isEqual(data.toString(),'CONNECTED')){
                 log.info("Successfully started raspibot.py script.");
-                //self.wakeUp();
+                self.wakeUp();
             }
         });
 
@@ -50,7 +49,6 @@ function Raspy(){
         });
     };
 
-    /*
     Raspy.prototype.wakeUp = function(){
         var self = this;
         self.sendServoCommand(HEAD_TILT+","+9000);//get head out of arm's way
@@ -63,42 +61,10 @@ function Raspy(){
         self.sendServoCommand({"servo":HEAD_PAN,"pos":5500});//center head
         self.sendServoCommand({"servo":HEAD_TILT,"pos":6000});//put head up
     };
-    */
-
-    Raspy.prototype.remoteDisconnect = function(){
-        var self = this;
-        log.info("Raspy got disconnect command.");
-        if (!_.isEmpty(self._maestro)) {
-            log.warn('Sending remote disconnect command down to stdin of maestro.');
-            self._maestro.stdin.write('REMOTE_DISCONNECT'+'\r\n');//just send down raw
-            self._remoteConnected = false;
-        }
-        else {
-            log.error("Raspy error. Maestro object null.");
-        }
-    };
-
-    Raspy.prototype.remoteConnect = function(){
-      var self = this;
-      log.info("Raspy got connect command.");
-      if (!_.isEmpty(self._maestro)) {
-        log.warn('Sending remote connect command down to stdin of maestro.');
-        self._maestro.stdin.write('REMOTE_CONNECT'+'\r\n');//just send down raw
-        self._remoteConnected = true;
-      }
-      else {
-        log.error("Raspy error. Maestro object null.");
-      }
-    };
 
     Raspy.prototype.sendServoCommand = function(cmd){
         var self = this;
         log.info("Raspy got servo command:" + JSON.stringify(cmd));
-
-        if(self._remoteConnected === false){
-            log.error("Error sending servo command. Remote connection must send connect command first.");
-            return;
-        }
 
         if (!_.isEmpty(self._maestro)) {
             log.warn('Sending servo command down to stdin of maestro.');

@@ -12,13 +12,6 @@ servo.setAccel(5,4)
 servo.setAccel(6,4)
 servo.setAccel(7,4)
 
-yellowLed = LED(21)
-greenLed = LED(16)
-blueLed = LED(20)
-redLed = LED(18)
-
-redLed.on() #power LED indicator
-
 sys.stdout.write('CONNECTED')
 sys.stdout.flush()
 
@@ -26,18 +19,9 @@ while True:
     cmd = stdin.readline()
     if cmd is not None:
         cmd = cmd.replace('\r\n','')
-        if cmd == "REMOTE_CONNECT":
-            sys.stdout.write("Remote connect rx: "+cmd)
-            blueLed.on()
-            sys.stdout.flush()
-        elif cmd == "REMOTE_DISCONNECT":
-            sys.stdout.write("Remote disconnect rx: "+cmd)
-            blueLed.off()
-            sys.stdout.flush()
-        else:
-            splitStr = cmd.split(',')
-            servo.setTarget(int(splitStr[0]),int(splitStr[1]))
-            sys.stdout.write("Moving servo:"+splitStr[0]+" to position:"+splitStr[1])
-            sys.stdout.flush()
+        splitStr = cmd.split(',')
+        servo.setTarget(int(splitStr[0]),int(splitStr[1]))
+        sys.stdout.write("Moving servo:"+splitStr[0]+" to position:"+splitStr[1])
+        sys.stdout.flush()
 
 servo.close
