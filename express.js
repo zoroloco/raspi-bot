@@ -15,7 +15,6 @@ module.exports = function(raspybot) {
     log.info("Setting default and config values for express app.");
 
     app.set('port', process.env.PORT || conf.port);
-    app.set('httpPort', conf.httpPort);
     app.set('title', conf.title);
 
     // get all data/stuff of the body (POST) parameters
@@ -31,7 +30,7 @@ module.exports = function(raspybot) {
     //setup swagger
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-    app.use(cors);
+    //app.use(cors);
 
     require('./routes.js')(app,raspybot);
 
